@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <title>Task Manager</title>
+  <style>
+    body { font-family: Arial; max-width: 500px; margin: 40px auto; padding: 0 15px; }
+    .done { text-decoration: line-through; color: gray; }
+    form.inline { display: inline; }
+    .errorlist { color: red; }
+  </style>
+</head>
+<body>
+  <h2>Task Manager</h2>
+  {% if user.is_authenticated %}
+    <p>Hi, {{ user.username }}
+      <form class='inline' method='post' action='{% url 'logout' %}'>
+        {% csrf_token %}<button>Logout</button>
+      </form>
+    </p>
+  {% endif %}
+  {% block content %}{% endblock %}
+</body>
+</html>
